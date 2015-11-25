@@ -1,6 +1,8 @@
 package interfaces;
 
-public interface Subject {
+import java.io.Serializable;
+
+public interface Subject extends Serializable {
 	
 	public void register(Observer obj);
 	public void unregister(Observer obj);

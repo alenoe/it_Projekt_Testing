@@ -1,9 +1,11 @@
 package gameLogic;
 
+import java.io.Serializable;
 import java.util.TreeMap;
+
 import gameLogic.DieM;
 
-public class DiceM {
+public class DiceM implements Serializable {
 	
 	public TreeMap<Integer, DieM> diceMap = new TreeMap<Integer, DieM>();
 	

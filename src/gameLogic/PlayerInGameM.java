@@ -1,27 +1,27 @@
 package gameLogic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import Server.UserM;
 import interfaces.Observer;
 import interfaces.Subject;
 
-public class PlayerInGameM implements Subject{
+public class PlayerInGameM implements Subject, Serializable{ 
 	
 	//Magic Numbers m�ssen �ber SL und config geladen werden.
 	
-	public static final int MAX_HP = 10;
-	public static final int MAX_VP = 20;
+	public final int MAX_HP = 10;
+	public final int MAX_VP = 20;
 	
 	//Klassenvariablen
 	
-	private List<Observer> observers;
+	private ArrayList<Observer> observers;
     private String message;
     private boolean changed;
     private final Object MUTEX= new Object();
 	
-	private UserM user;		//soll ein UserM Objekt enthalten.
+	private String user;		//soll ein UserM Objekt enthalten.
 	private int avatar;
 	private int healthPoints;
 	private int victoryPoints;
@@ -30,7 +30,7 @@ public class PlayerInGameM implements Subject{
 	
 	//Constructor wird vom Server aufgerufen und �bergibt die Spielvariablen.
 	
-	public PlayerInGameM(UserM user, int avatar, int playerNumber){
+	public PlayerInGameM(String user, int avatar, int playerNumber){
 		this.user = user;
 		this.avatar = avatar;
 		this.healthPoints = MAX_HP;
@@ -41,7 +41,7 @@ public class PlayerInGameM implements Subject{
 	
 	//getter und setter methoden
 	
-	public UserM getUserName(){	//setzt getUserName() implementation in UserM vorraus.
+	public String getUserName(){	//setzt getUserName() implementation in UserM vorraus.
 		return this.user;
 	}
 
@@ -132,28 +132,28 @@ public class PlayerInGameM implements Subject{
 	@Override
 	public void register(Observer obj) {
         if(obj == null) throw new NullPointerException("Null Observer");
-        synchronized (MUTEX) {
+//        synchronized (MUTEX) {
         if(!observers.contains(obj)) observers.add(obj);
-        }
+//        }
 	}
 
 	@Override
 	public void unregister(Observer obj) {
-        synchronized (MUTEX) {
+//        synchronized (MUTEX) {
         observers.remove(obj);
-        }
+//        }
 	}
 
 	@Override
 	public void notifyObservers() {
-        List<Observer> observersLocal = null;
+        ArrayList<Observer> observersLocal = null;
         //synchronization is used to make sure any observer registered after message is received is not notified
-        synchronized (MUTEX) {
+//        synchronized (MUTEX) {
             if (!changed)
                 return;
             observersLocal = new ArrayList<>(this.observers);
             this.changed=false;
-        }
+//        }
         for (Observer obj : observersLocal) {
             obj.update(this, this);
         }

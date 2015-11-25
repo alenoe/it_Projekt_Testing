@@ -1,5 +1,6 @@
 package gameLogic;
 
+
 import java.util.ArrayList;
 
 public class PlayM {
@@ -58,18 +59,18 @@ public class PlayM {
 	
 	public void isFinished(){
 		for(PlayerInGameM p : playerList){
-		//Der Schaden wird auf den Gegnern zugefügt.
+		//Der Schaden wird auf den Gegnern zugefï¿½gt.
 			if(p != player){
 				p.setDamage(getDamage());
 			}
 		}
-		//Verteilung der Herzeinheiten als Lebenspunkte für den Spieler.
+		//Verteilung der Herzeinheiten als Lebenspunkte fï¿½r den Spieler.
 			player.getHealed(getHeal());
 
-		//Wenn der Spieler in Tokyo ist, erhält er für diese Runde seine zwei Bonuspunkte.
+		//Wenn der Spieler in Tokyo ist, erhï¿½lt er fï¿½r diese Runde seine zwei Bonuspunkte.
 		if(player.getPosition() == true){
 			player.setVictoryPoints(getVictoryPoints() + 2);
-		//Falls nicht erhält er seine gewürfelten Punkte.	
+		//Falls nicht erhï¿½lt er seine gewï¿½rfelten Punkte.	
 		} else {
 			player.setVictoryPoints(getVictoryPoints());
 		}

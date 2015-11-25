@@ -1,9 +1,10 @@
 package gameLogic;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.TreeMap;
 
-public class DieM {
+public class DieM implements Serializable{
 	private int id, value;
 	private boolean lock;
 	private String facePicture, facePictureLock; //Sollte zum Board Model ausgelagert werden, da die Variable refreshed werden muss.

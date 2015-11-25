@@ -113,8 +113,8 @@
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin></ImageView>
-                        <Label text="10" />
-                        <Label text="Spieler 1">
+                        <Label fx:id="lifePointsP1" text="10" />
+                        <Label fx:id="UsernameP1" text="Spieler 1">
                            <padding>
                               <Insets left="10.0" />
                            </padding></Label>
@@ -129,11 +129,11 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></ImageView>
-                        <Label text="0">
+                        <Label fx:id="StarsP1" text="0">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin></Label>
-                        <Label text="In Tokyo?">
+                        <Label fx:id="AnzeigeTokyoP1" text="In Tokyo?">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin></Label>
@@ -173,11 +173,11 @@
                      </image></ImageView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Spieler 2">
+                        <Label fx:id="UsernameP2" text="Spieler 2">
                            <padding>
                               <Insets right="10.0" />
                            </padding></Label>
-                        <Label text="10" />
+                        <Label fx:id="lifePointsP2" text="10" />
                         <ImageView fitHeight="35.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Heart/heart-clip-art-valentine_heart_29-1969px.png" />
@@ -189,11 +189,11 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="In Tokyo?">
+                        <Label fx:id="AnzeigeTokyoP2" text="In Tokyo?">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin></Label>
-                        <Label text="0">
+                        <Label fx:id="StarsP2" text="0">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin></Label>

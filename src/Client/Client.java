@@ -1,5 +1,7 @@
 package Client;
 
+import gameLogic.PlayerInGameM;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,17 +17,17 @@ public class Client implements Runnable{
 	private String iP;
 	private Integer port;
 	private Socket client;
-	private String userName;
 	
-	private ObjectOutputStream clientOutputStream;
+	
+	private static ObjectOutputStream clientOutputStream;
 	private ObjectInputStream clientInputStream;
 	private Thread  t;
 	
 	
-	public Client(String port, String ip, String userName){
+	public Client(String port, String ip){
 		this.port = Integer.parseInt(port);
 		this.iP = ip;
-		this.userName = userName;
+		
 		
 		try {
             client = new Socket(this.iP, this.port);
@@ -43,12 +45,7 @@ public class Client implements Runnable{
 	}
 	
 	
-	public void setPersonName(String personName){
-		this.userName = userName;
-	}
-	public String getPersonName(){
-		return this.userName;
-	}
+	
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -64,6 +61,7 @@ public class Client implements Runnable{
 		HashMap<String, Object> m = null;
 		Person p = null;
 		UserM um = null;
+		PlayerInGameM pIG = null;
 		
       while(!this.client.isClosed()){
       try {
@@ -72,19 +70,33 @@ public class Client implements Runnable{
 		String k = (new ArrayList<String>(m.keySet())).get(0);
 		
 		switch (k){
-		case "Username":
-			um = (UserM) m.get("Username");
+		case "User1":
+			um = (UserM) m.get("User1");
 			System.out.println(um);
 			
 			
 			break;
 			
-		case "Person":
-			p = (Person) m.get("Person");
-			System.out.println(p);
+		case "User2":
+			um = (UserM) m.get("User2");
+			System.out.println(um);
 			
+			
+			break;	
+		
+		case "PlayerInGameM1":
+			pIG = (PlayerInGameM) m.get("PlayerInGameM1");
+			System.out.println(pIG);
 			
 			break;
+		
+		
+		
+			
+		
+			
+			
+			
 		}
 		
         
@@ -110,17 +122,14 @@ public class Client implements Runnable{
 			
 }
 
-	public void sendNameToServer() {
-		try {
-			
-			HashMap<String, String> m = new HashMap<String, String>();
-			m.put("Username", userName);
-			clientOutputStream.writeObject(m);
-			m.clear();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-}
+
+	public static void sendMsg(String type, Object o) throws IOException {
+
+	    HashMap<String, Object> hMap = new  HashMap<String, Object>();
+	    hMap.put(type, o);
+	    
+	    clientOutputStream.writeObject(hMap);
+	    clientOutputStream.flush();
+	}
 	
 }

@@ -3,10 +3,14 @@ package application;
 
 
 import gameLogic.DiceM;
+import gameLogic.PlayerInGameM;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+
 
 
 
@@ -40,6 +44,25 @@ public class Dice_Controller implements Initializable{
 	Label lMessage;
 	
 	@FXML
+	Label lifePointsP1;
+	@FXML
+	Label lifePointsP2;
+	@FXML
+	Label StarsP1;
+	@FXML
+	Label Stars2;
+	@FXML
+	Label AnzeigeTokyoP1;
+	@FXML
+	Label AnzeigeTokyoP2;
+	@FXML
+	Label UsernameP1;
+	@FXML
+	Label UsernameP2;
+	
+	
+	
+	@FXML
 	BorderPane borderPane;
 	@FXML
 	Button btnRoll;
@@ -57,6 +80,9 @@ public class Dice_Controller implements Initializable{
 	Button btnDice6;
 	
 	private Client clientSocket;
+	
+	private PlayerInGameM pIG1;
+	private PlayerInGameM pIG2;
 
 	private DiceM d1 = new DiceM(6);
 	
@@ -86,11 +112,15 @@ public class Dice_Controller implements Initializable{
 		btnConnect.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				clientSocket = new Client(tfPort.getText(), tfIP.getText(), tfUsername.getText());
-//				clientSocket.setPersonName(tfUsername.getText());
-//				clientSocket.runClient();
-				clientSocket.sendNameToServer();
-//				clientSocket.run();
+				clientSocket = new Client(tfPort.getText(), tfIP.getText());
+				
+					try {
+						Client.sendMsg("Username", tfUsername.getText());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
 			}
 		});
 		

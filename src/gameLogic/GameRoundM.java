@@ -1,5 +1,6 @@
 package gameLogic;
 
+
 import java.util.ArrayList;
 
 import interfaces.Observer;
@@ -8,9 +9,9 @@ import gameLogic.PlayerInGameM;
 
 public class GameRoundM implements Observer{
 	
-	public static final int MAX_PLAYERS = 2; // Wenn man mehr als 2 Spieler will, wäre es nützlich hier "MAX_PLAYERS = players.size()" 
+	public static final int MAX_PLAYERS = 2; // Wenn man mehr als 2 Spieler will, wï¿½re es nï¿½tzlich hier "MAX_PLAYERS = players.size()" 
 	// zu machen. Der Server braucht sowieso eine Liste um die Clients/Spieler anzusprechen, die mit dem Spielbrett verbunden sind. 
-	// Wenn ein Spieler rausfliegt, kann man ihn dann einfach von dieser Liste löschen und die ArrayList-Size nochmal einlesen.
+	// Wenn ein Spieler rausfliegt, kann man ihn dann einfach von dieser Liste lï¿½schen und die ArrayList-Size nochmal einlesen.
 	// - Kommentar von Raphael
 	
 	private Subject topic;
